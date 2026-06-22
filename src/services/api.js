@@ -1,8 +1,8 @@
-export const API_URL = 'http://localhost:8000/api';
+export const API_URL = 'https://telko-digital-identity-backend-main-1drpqn.laravel.cloud/api';
 
 export const apiFetch = async (endpoint, options = {}) => {
   const token = localStorage.getItem('auth_token');
-  
+
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
