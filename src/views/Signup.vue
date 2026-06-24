@@ -51,6 +51,7 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { apiFetch } from '../services/api';
+import { Preferences } from '@capacitor/preferences';
 
 const router = useRouter();
 const form = reactive({
@@ -69,7 +70,7 @@ const handleSignup = async () => {
       method: 'POST',
       body: JSON.stringify(form)
     });
-    localStorage.setItem('auth_token', data.access_token);
+    await Preferences.set({ key: 'auth_token', value: data.access_token });
     router.push('/dashboard');
   } catch (err) {
     error.value = err.message || 'Failed to create account. Please try again.';

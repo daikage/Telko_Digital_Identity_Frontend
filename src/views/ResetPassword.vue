@@ -138,6 +138,7 @@ const handleResetPassword = async () => {
   background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
   animation: rotate 30s linear infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
 .auth-card {

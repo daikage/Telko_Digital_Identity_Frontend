@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { Preferences } from '@capacitor/preferences';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,8 +55,9 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('auth_token');
+router.beforeEach(async (to, from, next) => {
+  const { value } = await Preferences.get({ key: 'auth_token' });
+  const isAuthenticated = !!value;
   
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login');

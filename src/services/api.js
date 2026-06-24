@@ -1,7 +1,9 @@
+import { Preferences } from '@capacitor/preferences';
+
 export const API_URL = 'https://telko-digital-identity-backend-main-1drpqn.laravel.cloud/api';
 
 export const apiFetch = async (endpoint, options = {}) => {
-  const token = localStorage.getItem('auth_token');
+  const { value: token } = await Preferences.get({ key: 'auth_token' });
 
   const headers = {
     'Content-Type': 'application/json',
@@ -19,7 +21,7 @@ export const apiFetch = async (endpoint, options = {}) => {
   });
 
   if (response.status === 401) {
-    localStorage.removeItem('auth_token');
+    await Preferences.remove({ key: 'auth_token' });
     window.location.href = '/login';
     throw new Error('Unauthenticated');
   }
