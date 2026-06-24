@@ -59,7 +59,7 @@ const handleLogin = async () => {
   try {
     const data = await apiFetch('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ ...form, remember: true })
+      body: JSON.stringify(form)
     });
     localStorage.setItem('auth_token', data.access_token);
     router.push('/dashboard');
