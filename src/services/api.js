@@ -35,6 +35,8 @@ export const apiFetch = async (endpoint, options = {}) => {
 export const login = (data) => apiFetch('/auth/login', { method: 'POST', body: JSON.stringify(data) });
 export const register = (data) => apiFetch('/auth/register', { method: 'POST', body: JSON.stringify(data) });
 export const logout = () => apiFetch('/auth/logout', { method: 'POST' });
+export const forgotPassword = (data) => apiFetch('/auth/forgot-password', { method: 'POST', body: JSON.stringify(data) });
+export const resetPassword = (data) => apiFetch('/auth/reset-password', { method: 'POST', body: JSON.stringify(data) });
 export const getMyProfile = () => apiFetch('/my-profile');
 export const updateProfile = (data) => apiFetch('/profile/update', { method: 'PUT', body: JSON.stringify(data) });
 export const getAdminDashboard = () => apiFetch('/admin/dashboard');
