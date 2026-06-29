@@ -86,7 +86,6 @@ import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { apiFetch, getMyProfile, logout as apiLogout } from '../services/api';
 import QrcodeVue from 'qrcode.vue';
-import { Preferences } from '@capacitor/preferences';
 
 const router = useRouter();
 const user = ref(null);
@@ -123,7 +122,7 @@ const logout = async () => {
   } catch (err) {
     console.error('Logout failed on server', err);
   } finally {
-    await Preferences.remove({ key: 'auth_token' });
+    localStorage.removeItem('auth_token');
     router.push('/');
   }
 };

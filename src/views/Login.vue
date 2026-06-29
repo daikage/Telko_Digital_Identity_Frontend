@@ -47,7 +47,6 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { apiFetch } from '../services/api';
-import { Preferences } from '@capacitor/preferences';
 
 const router = useRouter();
 const form = reactive({
@@ -65,7 +64,7 @@ const handleLogin = async () => {
       method: 'POST',
       body: JSON.stringify(form)
     });
-    await Preferences.set({ key: 'auth_token', value: data.access_token });
+    localStorage.setItem('auth_token', data.access_token);
     router.push('/dashboard');
   } catch (err) {
     error.value = err.message || 'Invalid credentials. Please try again.';
